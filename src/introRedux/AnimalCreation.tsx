@@ -1,12 +1,18 @@
 import type { RootState } from './store.tsx';
 import { useSelector, useDispatch } from 'react-redux';
-import { addNewAnimal, animalState } from './counterSlice.tsx';
-import { useState } from 'react';
+import { addAnimalsFromStorage, addNewAnimal, animalState } from './animalSlice.tsx';
+import { useEffect, useState } from 'react';
+import DisplayAnimal from '../Components/DisplayAnimal.tsx';
 
 export function AnimalCreation() {
-  const animals = useSelector((state: RootState) => state.animals);
   const dispatch = useDispatch();
+  // dispatch(addAnimalsFromStorage());
 
+  useEffect(() => {
+    dispatch(addAnimalsFromStorage());
+  }, []);
+
+  const animals = useSelector((state: RootState) => state.animals.animals);
   const [animal, setAnimal] = useState(animalState);
 
   return (
@@ -15,7 +21,7 @@ export function AnimalCreation() {
         <form
           onSubmit={(e) => {
             e.preventDefault();
-            dispatch(addNewAnimal(animal));
+            dispatch(addNewAnimal({ ...animal, id: animals.length }));
             setAnimal(animalState);
           }}
         >
@@ -31,7 +37,6 @@ export function AnimalCreation() {
                 ...animal,
                 animalName: e.target.value,
               });
-              // const test = { ...animals, animalName: e.target.value };
             }}
           />
           <br />
@@ -53,6 +58,7 @@ export function AnimalCreation() {
           <br />
           <button>Submit</button>
         </form>
+        <DisplayAnimal />
         {/*<button aria-label="Add animal" className="btn btn-primary" onClick={() => dispatch(addNewAnimal())}>*/}
         {/*  Add*/}
         {/*</button>*/}

@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import counterReducer from './counterSlice.tsx';
+import counterReducer from './animalSlice.tsx';
 
 export const store = configureStore({
   reducer: {

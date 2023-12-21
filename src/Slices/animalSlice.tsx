@@ -59,6 +59,9 @@ export const animalSlice = createSlice({
     },
     addAnimalsFromStorage: (state) => {
       state.animals = JSON.parse(localStorage.getItem('animals') || '[]');
+      if (state.animals.length === 0) {
+        toast.warn('No data found in localStorage');
+      }
     },
   },
 });

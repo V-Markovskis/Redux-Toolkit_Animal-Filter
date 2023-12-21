@@ -1,10 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { z } from 'zod';
 
-export interface Animal {
-  id: number;
-  imageUrl: string;
-  animalName: string;
-}
+export const AnimalSchema = z.object({
+  id: z.number(),
+  imageUrl: z.string().url(),
+  animalName: z.string(),
+});
+
+export type Animal = z.infer<typeof AnimalSchema>;
 
 export const animalState: Animal = {
   id: 1,
@@ -14,16 +17,28 @@ export const animalState: Animal = {
 
 export interface AnimalState {
   animals: Animal[];
+  hasError: boolean;
+  errorMessage: string;
 }
 
 export const initialState: AnimalState = {
   animals: [],
+  hasError: false,
+  errorMessage: '',
 };
 
 export const animalSlice = createSlice({
   name: 'animals',
   initialState,
   reducers: {
+    resetAnimalError: (state) => {
+      state.hasError = false;
+      state.errorMessage = '';
+    },
+    failAnimalAdd: (state, action) => {
+      state.errorMessage = action.payload;
+      state.hasError = true;
+    },
     addNewAnimal: (state, action) => {
       //https://stackoverflow.com/questions/75812968/redux-toolkit-1-9-3-and-property-push-does-not-exist-on-type-writabledraftc
       state.animals.push(action.payload);

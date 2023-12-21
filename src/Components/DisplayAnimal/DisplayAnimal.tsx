@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../Store/store.tsx';
-import { deleteAnimal } from '../Slices/animalSlice.tsx';
+import { RootState } from '../../Store/store.tsx';
+import { deleteAnimal } from '../../Slices/animalSlice.tsx';
 import styles from './DisplayAnimal.module.css';
 
 const DisplayAnimal = () => {

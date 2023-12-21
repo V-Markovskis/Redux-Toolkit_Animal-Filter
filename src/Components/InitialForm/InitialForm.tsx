@@ -1,8 +1,9 @@
-import { addNewAnimal, animalState } from '../../Slices/animalSlice.tsx';
+import { animalState } from '../../Slices/animalSlice.tsx';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../Store/store.tsx';
 import { useState } from 'react';
 import styles from './InitialForm.module.css';
+import { addAnimal } from '../../ValidationFunctions/addAnimal.tsx';
 
 const InitialForm = () => {
   const dispatch = useDispatch();
@@ -15,7 +16,10 @@ const InitialForm = () => {
         className={styles.formContainer}
         onSubmit={(e) => {
           e.preventDefault();
-          dispatch(addNewAnimal({ ...animal, id: animals.length + 1 }));
+          const animalId = animals.length + 1;
+          // dispatch(addNewAnimal({ ...animal, id: animals.length + 1 }));
+          console.log('animal', animal);
+          addAnimal(dispatch, animal, animalId);
           setAnimal(animalState);
         }}
       >

@@ -18,7 +18,6 @@ const InitialForm = () => {
           e.preventDefault();
           const animalId = animals.length + 1;
           // dispatch(addNewAnimal({ ...animal, id: animals.length + 1 }));
-          console.log('animal', animal);
           addAnimal(dispatch, animal, animalId);
           setAnimal(animalState);
         }}

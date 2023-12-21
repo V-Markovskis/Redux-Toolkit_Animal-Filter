@@ -1,5 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { z } from 'zod';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const AnimalSchema = z.object({
   id: z.number(),
@@ -38,6 +40,7 @@ export const animalSlice = createSlice({
     failAnimalAdd: (state, action) => {
       state.errorMessage = action.payload;
       state.hasError = true;
+      toast.error('Incorrect data passed');
     },
     addNewAnimal: (state, action) => {
       //https://stackoverflow.com/questions/75812968/redux-toolkit-1-9-3-and-property-push-does-not-exist-on-type-writabledraftc
@@ -47,6 +50,7 @@ export const animalSlice = createSlice({
       animals.push(action.payload);
 
       localStorage.setItem('animals', JSON.stringify(animals));
+      toast.success('Success');
     },
     deleteAnimal: (state, action) => {
       state.animals = state.animals.filter((animal) => action.payload.id !== animal.id);

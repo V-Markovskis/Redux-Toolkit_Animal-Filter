@@ -7,7 +7,7 @@ export interface Animal {
 }
 
 export const animalState: Animal = {
-  id: 0,
+  id: 1,
   imageUrl: '',
   animalName: '',
 };
@@ -26,9 +26,7 @@ export const animalSlice = createSlice({
   reducers: {
     addNewAnimal: (state, action) => {
       //https://stackoverflow.com/questions/75812968/redux-toolkit-1-9-3-and-property-push-does-not-exist-on-type-writabledraftc
-      console.log('action.payload', action.payload);
       state.animals.push(action.payload);
-      console.log('animals current ID: ', action.payload.id);
 
       const animals = JSON.parse(localStorage.getItem('animals') || '[]');
       animals.push(action.payload);
@@ -37,7 +35,8 @@ export const animalSlice = createSlice({
     },
     deleteAnimal: (state, action) => {
       state.animals = state.animals.filter((animal) => action.payload.id !== animal.id);
-      localStorage.removeItem(action.payload.id);
+      //https://stackoverflow.com/questions/38748298/remove-array-item-from-localstorage
+      localStorage.setItem('animals', JSON.stringify(state.animals));
     },
     addAnimalsFromStorage: (state) => {
       state.animals = JSON.parse(localStorage.getItem('animals') || '[]');

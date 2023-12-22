@@ -16,7 +16,7 @@ const InitialForm = () => {
         className={styles.formContainer}
         onSubmit={(e) => {
           e.preventDefault();
-          const animalId = animals.length + 1;
+          const animalId = animals.length + 1; //math random refactor
           // dispatch(addNewAnimal({ ...animal, id: animals.length + 1 }));
           addAnimal(dispatch, animal, animalId);
           setAnimal(animalState);

@@ -2,6 +2,8 @@ import { animalSlice, AnimalSchema, Animal } from '../Slices/animalSlice.tsx';
 import { AppDispatch } from '../Store/store.tsx';
 
 export const addAnimal = (dispatch: AppDispatch, animal: Animal, animalId: number) => {
+  // const dispatch = useDispatch();
+
   const result = AnimalSchema.safeParse(animal);
   if (result.success) {
     result.data.id = animalId;

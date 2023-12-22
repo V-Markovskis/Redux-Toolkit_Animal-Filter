@@ -1,7 +1,7 @@
 import { useDispatch } from 'react-redux';
 import { addAnimalsFromStorage } from '../Slices/animalSlice.tsx';
 import { useEffect } from 'react';
-import DisplayAnimal from '../Components/DisplayAnimal/DisplayAnimal.tsx';
+import DisplayAnimals from '../Components/DisplayAnimals/DisplayAnimals.tsx';
 
 export function AnimalCreation() {
   const dispatch = useDispatch();
@@ -10,5 +10,5 @@ export function AnimalCreation() {
     dispatch(addAnimalsFromStorage());
   }, []);
 
-  return <DisplayAnimal />;
+  return <DisplayAnimals />;
 }

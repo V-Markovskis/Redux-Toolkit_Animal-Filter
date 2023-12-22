@@ -1,9 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit';
-import counterReducer from '../Slices/animalSlice.tsx';
+import animalReducer from '../Slices/animalSlice.tsx';
 
 export const store = configureStore({
   reducer: {
-    animals: counterReducer,
+    animals: animalReducer,
   },
 });
 

@@ -63,10 +63,19 @@ export const animalSlice = createSlice({
         toast.warn('No data found in localStorage');
       }
     },
+    editAnimal: (state, action) => {
+      console.log('edit payload', action.payload);
+      const findAnimalToUpdate = state.animals.find((animal) => animal.id === action.payload.id);
+      if (findAnimalToUpdate) {
+        findAnimalToUpdate.animalName = action.payload.animalName;
+        findAnimalToUpdate.imageUrl = action.payload.imageUrl;
+      }
+      localStorage.setItem('animals', JSON.stringify(state.animals));
+    },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { addNewAnimal, deleteAnimal, addAnimalsFromStorage } = animalSlice.actions;
+export const { addNewAnimal, deleteAnimal, addAnimalsFromStorage, editAnimal } = animalSlice.actions;
 
 export default animalSlice.reducer;

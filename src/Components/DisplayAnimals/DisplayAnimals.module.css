@@ -1,4 +1,17 @@
-.globalContainer {
+.sortLogicContainer {
+    display: inline-block;
+    padding: 10px;
+    border: 1px solid black;
+    margin-bottom: 20px;
+    border-radius: 10px;
+}
+
+.displayAllAnimalsContainer {
     display: flex;
     gap: 20px
+}
+
+.buttonContainer {
+    display: flex;
+    gap: 10px
 }

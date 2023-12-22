@@ -56,6 +56,7 @@ export const animalSlice = createSlice({
       state.animals = state.animals.filter((animal) => action.payload.id !== animal.id);
       //https://stackoverflow.com/questions/38748298/remove-array-item-from-localstorage
       localStorage.setItem('animals', JSON.stringify(state.animals));
+      toast.success('Form deleted');
     },
     addAnimalsFromStorage: (state) => {
       state.animals = JSON.parse(localStorage.getItem('animals') || '[]');
@@ -72,10 +73,17 @@ export const animalSlice = createSlice({
       }
       localStorage.setItem('animals', JSON.stringify(state.animals));
     },
+    sortInAscending: (state) => {
+      state.animals.sort((a, b) => a.animalName.toUpperCase().localeCompare(b.animalName));
+    },
+    sortInDescending: (state) => {
+      state.animals.sort((a, b) => b.animalName.toUpperCase().localeCompare(a.animalName));
+    },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { addNewAnimal, deleteAnimal, addAnimalsFromStorage, editAnimal } = animalSlice.actions;
+export const { addNewAnimal, deleteAnimal, addAnimalsFromStorage, editAnimal, sortInAscending, sortInDescending } =
+  animalSlice.actions;
 
 export default animalSlice.reducer;

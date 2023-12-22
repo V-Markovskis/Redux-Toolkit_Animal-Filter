@@ -16,6 +16,7 @@ const DisplaySingleAnimal = ({ animalToDisplay }: DisplaySingleAnimalProps) => {
       <div className={styles.formGlobalContainer}>
         {editModeEnabled ? (
           <form
+            className={styles.editFormContainer}
             onSubmit={(e) => {
               e.preventDefault();
               console.log('edit submit clicked');
@@ -23,7 +24,9 @@ const DisplaySingleAnimal = ({ animalToDisplay }: DisplaySingleAnimalProps) => {
               setEditModeEnabled(!editModeEnabled);
             }}
           >
-            <span>Animal Nr: {animalToDisplay.id}</span>
+            <div className={styles.nameContainer}>
+              <span>Animal Nr: {animalToDisplay.id}</span>
+            </div>
             <br />
             <input
               value={editFormData.animalName}
@@ -39,7 +42,9 @@ const DisplaySingleAnimal = ({ animalToDisplay }: DisplaySingleAnimalProps) => {
               }}
             />
             <br />
-            <button>Submit</button>
+            <div className={styles.saveAfterEdit}>
+              <button className="btn btn-success">Save</button>
+            </div>
           </form>
         ) : (
           <div className={styles.formContainer}>
